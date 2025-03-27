@@ -5,7 +5,7 @@ const patientRoute = express.Router();
 
 
 
-//http://localhost:8000/api-docs/#/   swagger UI 
+//http://localhost:8000/api-docs swagger UI 
 
 //register patient using POST metod and documenting the api using swagger
 
