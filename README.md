@@ -4,6 +4,7 @@ This repository contains the backend implementation of a National Digital Record
 The system ensures efficient data access for healthcare professionals while maintaining high security standards and scalability.
 
 🔹 Features:
+
 ✅ Utilizes MongoDB as the database to store unstructured medical records informations.
 ✅ Developed using Node.js & Express.js for a backend.
 ✅ Provides RESTful APIs for seamless integration with healthcare systems.
