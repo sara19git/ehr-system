@@ -1,9 +1,10 @@
-Digital Record System
 
-This repository contains the backend implementation of a National Digital Record System, designed to securely store and manage patients' medical records.
-The system ensures efficient data access for healthcare professionals while maintaining high security standards and scalability.
+# Digital Record System
 
-🔹 Features:
+This repository contains the backend implementation of a National Digital Record System, designed to securely store and manage patients' medical records. The system ensures efficient data access for healthcare professionals while maintaining high security standards and scalability.
+
+
+## 🔹 Features:
 
 ✅ Utilizes MongoDB as the database to store unstructured medical records informations.
 
@@ -14,9 +15,10 @@ The system ensures efficient data access for healthcare professionals while main
 ✅ Supports patient history tracking, including diagnoses, prescriptions, and test results.
 
 ✅ Ensures data security & privacy through authentication (JWT) and encryption mechanisms (bcryptjs).
+## 🔹 Future Enhancements:
 
-🔹 Future Enhancements
+✅ Integration with frontend interfaces (React.js) for doctors, patients, and admins.
 
-✅  Integration with frontend interfaces (React.js) for doctors, patients, and admins.
+## 📌Note: 
 
-📌 Note: This repository currently includes only the backend part of the system. The full project, including the frontend, will be published soon upon completion. 
+ This repository currently includes only the backend part of the system. The full project, including the frontend, will be published soon upon completion.
