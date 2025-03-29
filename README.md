@@ -112,9 +112,6 @@ JWT_SECRET: أكتب كلمة سرية تتكون من أرقام وحروف و�
 لتجربة هذه ال APIs  أستخدم Postman
 بالاضافة لهذا ال API  `http://localhost:8000/api/patient/getPatient` فهو يحتاج إلى المصادقة باستخدام Token عند القيام بتسجيل الدخول باستخدام هذا ال API `http://localhost:8000/api/patient/loginPatient` ستحصل على Token  يجب تضمينه في Authorization header: 
 
-## Screenshots
-
-![إدخال ال Token]("C:\Users\hp\Desktop\Screenshot.png")
 
 ## الاختبار باستخدام Swagger UI
 
