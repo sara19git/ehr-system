@@ -3,10 +3,8 @@
 
 This repository contains the backend implementation of a National Digital Record System, designed to securely store and manage patients' medical records. The system ensures efficient data access for healthcare professionals while maintaining high security standards and scalability.
 
-يحتوي هذا المستودع على backend لنظام National Digital Record ، المصمم لتخزين وإدارة السجلات الطبية للمرضى بأمان. يضمن النظام وصولاً فعالاً للبيانات لمقدمي الرعاية الصحية، مع الحفاظ على معايير أمان عالية وقابلية للتوسع.
 
-
-## 🔹 Features: الميزات
+## 🔹 Features: 
 
 ✅ Utilizes MongoDB as the database to store unstructured medical records informations.
 
@@ -27,44 +25,39 @@ This repository contains the backend implementation of a National Digital Record
  This repository currently includes only the backend part of the system. The full project, including the frontend, will be published soon upon completion.
 
 
- 
-## خطوات الاستخدام
+## usage steps
 
-##  المتطلبات الأساسية
+## Prerequisites
 
-تأكدي أولا من تثبيت هذه المتطلبات على حاسوبك:
+First, make sure you have these prerequisites installed on your device:
 
-Node.js 
+- Node.js
 
-MongoDB  (أو استخدمي MongoDB Atlas)
+- MongoDB (or use MongoDB Atlas)
 
-Git (لتحميل المشروع من  GitHub)
+- Git (to download the project from GitHub)
 
-Postman ( لتجربة مجموعة ال APIs)
+- Postman (to test the APIs)
 
+## How to Run the Project
 
-## كيفية تجربة المشروع
-
-
-## 1️⃣ تحميل المشروع من GitHub
-
-بعد فتح VS Code قومي بفتح Terminal ثم استخدمي هذا الكود لتحميل المشروع 
+## 1️⃣ Clone the Project from GitHub
+After opening VS Code, open the Terminal and use this command to clone the project:
 
 ```bash
 git clone https://github.com/sara19git/ehr-system.git
 cd ehr-system
 ```
 
-## 2️⃣ تثبيت الحزم الضرورية
-
-المشروع مرفق بمجموعة من الحزم وهي موجودة في الملف package.json، بعد أستخدام هذا الكود سيتم تثبيتها تلقائيا
+## 2️⃣ Install Required Packages
+The project includes a list of packages defined in the `package.json` file. They will be installed automatically using this command:
 
 ```bash
   npm install
 ```
 
-## 3️⃣ إنشاء ملف البيئة .env
-بعد تحميل المشروع وفتحه على VS Code أنشئي ملف باسم .env و قومي بكتابة هذا المحتوى فيه 
+## 3️⃣ Create the `.env` Environment File
+After downloading and opening the project in VS Code, make sure to create a file named `.env` and add the following content:
 
 ``` javaScript
 PORT=8000
@@ -72,52 +65,57 @@ MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_secret_key
 ```
 
-MONGO_URI قم باستبداله بعنوان URL  الخاص بال databases  خاصتك
-JWT_SECRET: أكتب كلمة سرية تتكون من أرقام وحروف ورموز لحماية صلاحيات المستخدمين
+- MONGO_URI: Replace this with the connection URL of your own MongoDB database.
+- JWT_SECRET: Use a strong secret key (combination of letters, numbers, and symbols) to secure user authentication.
 
-## تشغيل السيرفر 
- 
- على Terminal  الخاص ب VS Code  أكتبي هذا الكود
+## Run the Server 
+In the VS Code Terminal, write this command: 
 
 ```bash
   npm run dev
 ```
 
-ثم أضيفي 
+Then add:
 
 ```bash
   npm start
 ```
 
-إذا كان كل شيء يعمل بشكل صحيح، يجب أن تري هذه رسالة
+If everything is working correctly, you should see this message:
 
 ```bash
   DataBases is connectd successfully!
   Server is running on PORT 8000
 ```
 
-## ال APIs الموجودة (Endpoints)
+## Available APIs (Endpoints)
+
 
 | method    | path     | Description |              
 | :-------- | :------- | :-----------|
-| `POST` | `http://localhost:8000/api/patient/createPatient` | إنشاء معلومات جديدة لمريض وتخزينها في قاعدة البيانات | 
-| `GET` | `http://localhost:8000/api/patient/getAllPatients` | جلب بيانات جميع المرضى المخزنة في قاعدة البيانات | 
-| `PUT` | `http://localhost:8000/api/patient/updatePatient/:id/` | تحديث بيانات مريض معين باستخدام ال id  خاصته|
-| `DELETE` | `http://localhost:8000/api/patient/deletePatient/:id/` | حذف بيانات مريض معين باستخدام ال id خاصته| 
-| `POST` | `http://localhost:8000/api/patient/registerPatient` | تسجيل حساب لمريض   |
-| `POST` | `http://localhost:8000/api/patient/loginPatient` | تسجيل دخول |
-| `GET` | `http://localhost:8000/api/patient/getPatient` | جلب بيانات مريض واحد فقط من قاعدة البيانات |
+| `POST` | `http://localhost:8000/api/patient/createPatient` | 	Create and store new patient data in the database | 
+| `GET` | `http://localhost:8000/api/patient/getAllPatients` | Retrieve all stored patients' data from the database | 
+| `PUT` | `http://localhost:8000/api/patient/updatePatient/:id/` | Update a specific patient’s data using their ID|
+| `DELETE` | `http://localhost:8000/api/patient/deletePatient/:id/` | Delete a specific patient’s data using their ID| 
+| `POST` | `http://localhost:8000/api/patient/registerPatient` | Register a new patient account   |
+| `POST` | `http://localhost:8000/api/patient/loginPatient` | Log in |
+| `GET` | `http://localhost:8000/api/patient/getPatient` | Retrieve a single patient's data from the database |
 
-## ملاحظة :
-لتجربة هذه ال APIs  أستخدم Postman
-بالاضافة لهذا ال API  `http://localhost:8000/api/patient/getPatient` فهو يحتاج إلى المصادقة باستخدام Token عند القيام بتسجيل الدخول باستخدام هذا ال API `http://localhost:8000/api/patient/loginPatient` ستحصل على Token  يجب تضمينه في Authorization header: 
+## Note:
 
+To test these APIs, use Postman.
 
-## الاختبار باستخدام Swagger UI
+In particular, this API:
+`http://localhost:8000/api/patient/getPatient`
+requires authentication using a Token.
+When logging in using this API:
+`http://localhost:8000/api/patient/loginPatient`,
+you will receive a Token that must be included in the Authorization header.
 
-قمت بتوثيق الـ APIs باستخدام Swagger UI، ويمكنك الوصول إليه عبر المتصفح عند تشغيل السيرفر:
+## API Testing with Swagger UI
+The APIs have been documented using Swagger UI, and you can access it via your browser when the server is running:
 
-[http://localhost:8000/api-docs](http://localhost:8000/api-docs)
+http://localhost:8000/api-docs
 
-يمكنك تجربة جميع الـ APIs مباشرة من الواجهة الرسومية لـ Swagger
+You can test all the APIs directly through Swagger’s graphical interface.
 
