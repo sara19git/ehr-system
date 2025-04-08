@@ -72,12 +72,6 @@ JWT_SECRET=your_secret_key
 In the VS Code Terminal, write this command: 
 
 ```bash
-  npm run dev
-```
-
-Then add:
-
-```bash
   npm start
 ```
 
