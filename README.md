@@ -1,47 +1,34 @@
 
-# Digital Record System
+## 🩺 Digital Record System
 
-This repository contains the backend implementation of a National Digital Record System, designed to securely store and manage patients' medical records. The system ensures efficient data access for healthcare professionals while maintaining high security standards and scalability.
+This repository contains a demo of a National Digital Record System, designed to securely store and manage patients' medical records. The system ensures efficient data access for healthcare professionals while maintaining high security standards and scalability.
 
+## Technologies Used
 
-## 🔹 Features: 
+###  Frontend
+- React.js
+- Tailwind CSS
+- shadcn/ui
+- Axios
 
-✅ Utilizes MongoDB as the database to store unstructured medical records informations.
+### Backend
 
-✅ Developed using Node.js & Express.js for a backend.
+- Express.js
+- MongoDB + Mongoose
+- JSON Web Token (JWT)
+- bcryptjs
+- dotenv
+- cors
 
-✅ Provides RESTful APIs for seamless integration with healthcare systems.
-
-✅ Supports patient history tracking, including diagnoses, prescriptions, and test results.
-
-✅ Ensures data security & privacy through authentication (JWT) and encryption mechanisms (bcryptjs).
-
-## 🔹 Future Enhancements:
-
-✅ Integration with frontend interfaces (React.js) for doctors, patients, and admins.
-
-## 📌Note: 
-
- This repository currently includes only the backend part of the system. The full project, including the frontend, will be published soon upon completion.
-
-
-## usage steps
-
-## Prerequisites
-
-First, make sure you have these prerequisites installed on your device:
+## Installation & Setup
+First, make sure you have these prerequisites installed and running on your device:
 
 - Node.js
+- MongoDB
+- Git
 
-- MongoDB (or use MongoDB Atlas)
+### 1. Clone the repository
 
-- Git (to download the project from GitHub)
-
-- Postman (to test the APIs)
-
-## How to Run the Project
-
-## 1️⃣ Clone the Project from GitHub
 After opening VS Code, open the Terminal and use this command to clone the project:
 
 ```bash
@@ -49,14 +36,19 @@ git clone https://github.com/sara19git/ehr-system.git
 cd ehr-system
 ```
 
-## 2️⃣ Install Required Packages
-The project includes a list of packages defined in the `package.json` file. They will be installed automatically using this command:
+### 2. Run the Server
+
+In the VS Code Terminal, write this command:
+```bash
+cd backend
+```
+then to install required packages add
 
 ```bash
-  npm install
+npm install
 ```
 
-## 3️⃣ Create the `.env` Environment File
+### 3. Create the `.env` Environment File
 After downloading and opening the project in VS Code, make sure to create a file named `.env` and add the following content:
 
 ``` javaScript
@@ -68,48 +60,56 @@ JWT_SECRET=your_secret_key
 - MONGO_URI: Replace this with the connection URL of your own MongoDB database.
 - JWT_SECRET: Use a strong secret key (combination of letters, numbers, and symbols) to secure user authentication.
 
-## Run the Server 
-In the VS Code Terminal, write this command: 
+and 
 
 ```bash
-  npm start
+npm start
 ```
 
-If everything is working correctly, you should see this message:
+### 4. Frontend Setup
 
 ```bash
-  DataBases is connectd successfully!
-  Server is running on PORT 8000
+cd frontend
 ```
+then install required packages using this command
 
-## Available APIs (Endpoints)
+```bash
+npm install
+```
+and run the project using this command 
+
+```bash
+npm run dev
+```
+Finally, congrats the demo is running on your browser and now you can test the current features...
+
+## Current Features
+- Doctor Registration
+- Doctor Login with JWT Authentication
+- Doctor Dashboard
+- Create new medical record (name, age, diagnosis, prescriptions, etc...)
+- View records belonging to the logged-in doctor
+
+## How Doctors Use It
+- Sign up via the registration page.
+- Log in using email and password.
+- After login, the doctor is redirected to the dashboard.
+- From the dashboard, the doctor can:
+- Click "Create New Record" to add a patient record.
+- View all records linked to their account.
+
+## Future Features (For Patients)
+- Patient signup and login.
+- View their personal informations (such as general infos & personal records).
+
+## ⚠️ Notes
+- This is currently just a demo version under  development.
+- New features are coming soon.
+
+## Demo
+![Uploading medical_record.gif…]()
 
 
-| method    | path     | Description |              
-| :-------- | :------- | :-----------|
-| `POST` | `http://localhost:8000/api/patient/createPatient` | 	Create and store new patient data in the database | 
-| `GET` | `http://localhost:8000/api/patient/getAllPatients` | Retrieve all stored patients' data from the database | 
-| `PUT` | `http://localhost:8000/api/patient/updatePatient/:id/` | Update a specific patient’s data using their ID|
-| `DELETE` | `http://localhost:8000/api/patient/deletePatient/:id/` | Delete a specific patient’s data using their ID| 
-| `POST` | `http://localhost:8000/api/patient/registerPatient` | Register a new patient account   |
-| `POST` | `http://localhost:8000/api/patient/loginPatient` | Log in |
-| `GET` | `http://localhost:8000/api/patient/getPatient` | Retrieve a single patient's data from the database |
 
-## Note:
 
-To test these APIs, use Postman.
-
-In particular, this API:
-`http://localhost:8000/api/patient/getPatient`
-requires authentication using a Token.
-When logging in using this API:
-`http://localhost:8000/api/patient/loginPatient`,
-you will receive a Token that must be included in the Authorization header.
-
-## API Testing with Swagger UI
-The APIs have been documented using Swagger UI, and you can access it via your browser when the server is running:
-
-http://localhost:8000/api-docs
-
-You can test all the APIs directly through Swagger’s graphical interface.
 
