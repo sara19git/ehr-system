@@ -107,7 +107,7 @@ Finally, congrats the demo is running on your browser and now you can test the c
 - New features are coming soon.
 
 ## Demo
-![Uploading medical_record.gif…]()
+https://ehr-system-beta.vercel.app/
 
 
 
