@@ -9,9 +9,9 @@ import Patient from "../model/patientModel.js"
 //Route  POST api/patient/registerPatient
 //access Public
 export const registerPatient = asyncHandler(async(req, res)=>{
-    const {name, email, password, role} = req.body
+    const {fullName, email, password, role} = req.body
 
-    if(!name || !email || !password || !role){
+    if(!fullName || !email || !password || !role){
          res.status(400)
          throw new Error("Please add all fields")
     }
@@ -26,10 +26,10 @@ export const registerPatient = asyncHandler(async(req, res)=>{
     const hashedPassword = await bcrypt.hash(password, salt)
 
     //create patient 
-    const patient =await Patient.create({name, email, password:hashedPassword , role  })
+    const patient =await Patient.create({fullName, email, password:hashedPassword , role  })
 
     if(patient){
-        res.status(201).json({_id: patient.id, name: patient.name, email: patient.email, role: patient.role, token: generateToken(patient._id),})
+        res.status(201).json({_id: patient.id, fullName: patient.fullName, email: patient.email, role: patient.role, token: generateToken(patient._id),})
     }else{
         res.status(400)
         throw new Error("Invalid patient data")

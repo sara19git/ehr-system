@@ -11,9 +11,9 @@ import Doctor from "../model/doctorModel.js"
 //Route  POST api/doctor/registerDoctor
 //access Public
 export const registerDoctor = asyncHandler(async(req, res)=>{
-    const {name, email, password, role} = req.body
+    const {fullName, email, password, role} = req.body
 
-    if(!name || !email || !password || !role){
+    if(!fullName || !email || !password || !role){
          res.status(400)
          throw new Error("Please add all fields")
     }
@@ -28,10 +28,10 @@ export const registerDoctor = asyncHandler(async(req, res)=>{
     const hashedPassword = await bcrypt.hash(password, salt)
 
     //create doctor
-    const doctor =await Doctor.create({name, email, password:hashedPassword, role })
+    const doctor =await Doctor.create({fullName, email, password:hashedPassword, role })
 
     if(doctor){
-        res.status(201).json({_id: doctor.id, name: doctor.name, email: doctor.email, role: doctor.role, token: generateToken(doctor._id),})
+        res.status(201).json({_id: doctor.id, fullName: doctor.fullName, email: doctor.email, role: doctor.role, token: generateToken(doctor._id),})
     }else{
         res.status(400)
         throw new Error("Invalid doctor data")
@@ -59,7 +59,7 @@ export const loginDoctor = asyncHandler(async(req, res)=>{
         throw new Error("Invalid credentials")
     }
     
-    return res.json({message:"Login Doctor"})
+   
 })
 
 
@@ -98,7 +98,7 @@ export const createDoctor = async(req, res)=> {
 
         const doctorExist = await Doctor.findOne({email})
         if(doctorExist){
-            return res.status(400).json({message:"Patient already exist"})
+            return res.status(400).json({message:"Doctor already exist"})
         }
 
         //if the doctor is not already exists (then save the data wich is providing with the json body)

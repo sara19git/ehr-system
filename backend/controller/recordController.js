@@ -9,7 +9,10 @@ export const createRecord = asyncHandler(async(req, res)=> {
             return res.status(403).json({ message: "Access denied, only doctors can create records" });
         }
 
-        const recordData = new Record(req.body);
+        const recordData = new Record({
+            ...req.body,
+            doctor_id: req.user._id 
+          });
         const{_id} = recordData;
 
         const recordExist = await Record.findOne({_id})
@@ -31,14 +34,14 @@ export const getAllRecords = asyncHandler(async(req, res)=> {
             return res.status(403).json({ message: "Access denied, only doctors can view records" });
         }
 
-        const records = await Record.find();
+        const records = await Record.find({ doctor_id: req.user._id });
 
         // if the data base is empty
         if(records.length === 0){
             return res.status(404).json({message: "Record Not Found"})
 
         }
-        // if there are a patients
+        // if there are a record
         res.status(200).json(records);
         
     } catch (error) {

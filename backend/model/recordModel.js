@@ -6,23 +6,44 @@ import doctorModel from "./doctorModel.js";
 const recordSchema = new mongoose.Schema({
     doctor_id: { 
         type: mongoose.Schema.Types.ObjectId, 
-        ref: doctorModel 
+        ref: doctorModel,
+        required: true
     },
     patient_id: {
          type: mongoose.Schema.Types.ObjectId,
          ref: patientModel
+    },
+    fullName:{
+        type: String,
+        required: true,
+    },
+    age:{
+        type: String,
+        required: true,
+    },
+    gender:{
+        type: String,
+        required: true,
+    },
+    email:{
+        type: String,
+        required: true,
+    },
+    phoneNumber:{
+        type: String,
+        required: true,
     },
     diagnosis:{
         type: String,
         required: true,
     },
     prescriptions:{
-        type: Array,
+        type: String,
         required: true,
     },
     testResults:{
         type: Array,
-        required: true,
+        required: false,
     },
     notes:{
         type: String,

@@ -2,6 +2,7 @@ import express from "express"
 import mongoose from "mongoose"
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
+import cors from "cors";
 import patientRoute from "./routes/patientRoute.js";
 import doctorRoute from "./routes/doctorRoute.js";
 import adminRoute from "./routes/adminRoute.js";
@@ -16,6 +17,8 @@ const app = express();
 
 //Middleware for parsing JSON Request
 app.use(bodyParser.json());
+
+app.use(cors());
 
 swaggerDocs(app);
 
