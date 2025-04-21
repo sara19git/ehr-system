@@ -106,10 +106,13 @@ Finally, congrats the demo is running on your browser and now you can test the c
 - This is currently just a demo version under  development.
 - New features are coming soon.
 
-## Demo
+# Demo Video
+
+Watch the demo video on YouTube:
+
+[![Watch the video](https://img.youtube.com/vi/6XxFdZJ_ukk/0.jpg)](https://youtu.be/6XxFdZJ_ukk)
+
+The app interface deployed in Vercel.
 https://ehr-system-beta.vercel.app/
-
-
-
 
 
