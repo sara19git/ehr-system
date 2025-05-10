@@ -15,6 +15,7 @@ import swaggerDocs from "./config/swagger.js";
 //Inialize express app
 const app = express();
 
+app.use(express.json());
 //Middleware for parsing JSON Request
 app.use(bodyParser.json());
 

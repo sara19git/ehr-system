@@ -2,6 +2,9 @@ import jwt from "jsonwebtoken"
 import bcrypt from "bcryptjs"
 import asyncHandler from "express-async-handler"
 import Admin from "../model/adminModel.js"
+import Patient from "../model/patientModel.js"
+import Doctor from "../model/doctorModel.js"
+import Record from "../model/recordModel.js"
 
 
 // code for register an admin(create an account)
@@ -9,9 +12,9 @@ import Admin from "../model/adminModel.js"
 //Route  POST api/admin/registerAdmin
 //access Public
 export const registerAdmin = asyncHandler(async(req, res)=>{
-    const {name, email, password, role} = req.body
+    const {fullName , email, password} = req.body
 
-    if(!name || !email || !password || !role){
+    if(!fullName || !email || !password ){
          res.status(400)
          throw new Error("Please add all fields")
     }
@@ -26,10 +29,10 @@ export const registerAdmin = asyncHandler(async(req, res)=>{
     const hashedPassword = await bcrypt.hash(password, salt)
 
     //create Admin
-    const admin =await Admin.create({name, email, password:hashedPassword, role })
+    const admin =await Admin.create({fullName, email, password:hashedPassword})
 
     if(admin){
-        res.status(201).json({_id: admin.id, name: admin.name, email: admin.email, role: admin.role, token: generateToken(admin._id),})
+        res.status(201).json({_id: admin.id, fullName: admin.fullName, email: admin.email,  token: generateToken(admin._id),})
     }else{
         res.status(400)
         throw new Error("Invalid admin data")
@@ -154,6 +157,30 @@ export const deleteAdmin = async(req, res)=>{
     }
 }
 
+
+export const getAdminStatistics = asyncHandler(async (req, res) => {
+    try {
+      const totalPatients = await Patient.countDocuments();
+      const totalDoctors = await Doctor.countDocuments();
+      const totalRecords = await Record.countDocuments();
+  
+      const topDiagnoses = await Record.aggregate([
+        { $group: { _id: "$diagnosis", count: { $sum: 1 } } },
+        { $sort: { count: -1 } },
+        { $limit: 5 }
+      ]);
+  
+      res.status(200).json({
+        totalPatients,
+        totalDoctors,
+        totalRecords,
+        topDiagnoses
+      });
+    } catch (error) {
+      console.error("Error fetching statistics", error);
+      res.status(500).json({ message: "Internal Server Error" });
+    }
+  });
 
 
 

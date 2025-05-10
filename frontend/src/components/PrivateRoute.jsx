@@ -6,11 +6,15 @@ const PrivateRoute = ({ children, allowedUserType }) => {
 
   if (!token) {
     return <Navigate to="/" replace />;
+    
   }
 
   if (allowedUserType && userType !== allowedUserType) {
     return <Navigate to="/" replace />;
   }
+
+  console.log("Token:", token);
+  console.log("User Type:", userType);
 
   return children;
 };

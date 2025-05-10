@@ -1,10 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-
+import { toast } from "sonner";
+import FormInput from "../components/FormInput";
 
 export default function DoctorLogin () {
 
@@ -47,7 +46,7 @@ const handleSubmit = async (e) => {
   e.preventDefault();
 
   if (!validate()) {
-    setMessage("Please correct errors in the form.");
+    toast.warning("Please correct errors in the form.");
     return;
   }
 
@@ -63,7 +62,7 @@ const handleSubmit = async (e) => {
     localStorage.setItem("token", token);
     localStorage.setItem("userType", "doctor");
 
-    setMessage("Login successful!");
+    toast.success("Login successful!");
     console.log("Token:", token);
 
     setErrors({});
@@ -71,7 +70,7 @@ const handleSubmit = async (e) => {
     navigate("/dashboard");
 
   } catch (error) {
-    setMessage("Login failed. Check your credentials.");
+    toast.error("Login failed. Check your credentials.");
     console.error("Login error:", error);
   }
 };
@@ -83,40 +82,34 @@ const handleSubmit = async (e) => {
           className="bg-white shadow-md rounded-lg p-8 w-full max-w-md space-y-4 border-1 ">
         <h2 className="text-2xl font-bold text-center text-sky-500 ">Doctor Log In</h2>
         <div>
-          <Label htmlFor="email">Email</Label>
-          <Input 
-            name="email"
-            id="email" 
-            type="email" 
-            placeholder="Enter your email" 
-            value={formData.email}
-            onChange={handleChange}/>
-            {errors.email && (
-            <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-          )}
+         <FormInput
+           label="Email"
+           name="email"
+           type="email"
+           placeholder="Enter your email"
+           value={formData.email}
+           onChange={handleChange}
+           error={errors.email}
+          />
         </div>
 
         <div>
-          <Label htmlFor="password">Password</Label>
-          <Input 
-          id="password" 
-          type="password" 
-          name="password"
-          placeholder="Create your password"
-          value={formData.password}
-          onChange={handleChange} />
-          {errors.password && (
-          <p className="text-red-500 text-sm mt-1">{errors.password}</p>
-          )}
+         <FormInput
+           label="Password"
+           name="password"
+           type="password"
+           placeholder="Create your password"
+           value={formData.password}
+           onChange={handleChange}
+           error={errors.password}
+          />
         </div>
 
         <Button type="submit" className="w-full bg-sky-500 hover:bg-sky-700">
           Login
         </Button>
 
-        {message && (
-          <p className="text-center text-sm text-gray-600 mt-2">{message}</p>
-        )}
+        
 
         </form>
 

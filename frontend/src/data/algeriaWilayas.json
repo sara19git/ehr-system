@@ -1,0 +1,30 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": { "name": "Alger" },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [[[3.0, 36.8], [3.1, 36.8], [3.1, 36.7], [3.0, 36.7], [3.0, 36.8]]]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": { "name": "Oran" },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [[[-0.7, 35.8], [-0.6, 35.8], [-0.6, 35.7], [-0.7, 35.7], [-0.7, 35.8]]]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": { "name": "Constantine" },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [[[6.6, 36.4], [6.7, 36.4], [6.7, 36.3], [6.6, 36.3], [6.6, 36.4]]]
+        }
+      }
+    ]
+  }
+  

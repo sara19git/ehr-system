@@ -1,6 +1,6 @@
 import express from "express"
-import {createRecord , getAllRecords , updateRecord , deleteRecord} from "../controller/recordController.js"
-import { protect, checkDoctor } from "../middleware/authMiddleware.js";
+import {createRecord , getAllRecords , updateRecord , deleteRecord, patientRecord, getPatientHistory} from "../controller/recordController.js"
+import { protect, checkDoctor, checkPatient } from "../middleware/authMiddleware.js";
 
 const recordRoute = express.Router();
 
@@ -105,4 +105,9 @@ recordRoute.put("/updateRecord/:id", protect, checkDoctor, updateRecord );
  */
 recordRoute.delete("/deleteRecord/:id", protect, checkDoctor, deleteRecord );
 
+//router.get("/myrecord", protect, getPatientMedicalRecord);
+
+recordRoute.get("/patientRecord", protect, checkPatient, patientRecord);
+recordRoute.get("/patient/history", protect, checkPatient, getPatientHistory);
+  
 export default recordRoute;

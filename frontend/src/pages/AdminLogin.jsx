@@ -1,14 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import FormInput from "../components/FormInput";
 
-
-export default function PatientLogin () {
+export default function AdminLogin () {
 
 const [formData, setFormData] = useState({
     email: "",
@@ -18,6 +15,7 @@ const [formData, setFormData] = useState({
 const [message, setMessage] = useState("");
 const [errors, setErrors] = useState({});  
 const navigate = useNavigate();
+
 
 const validate = () => {
   const newErrors = {};
@@ -54,7 +52,7 @@ const handleSubmit = async (e) => {
 
   try {
     const response = await axios.post(
-      "http://localhost:8000/api/patient/loginPatient",
+      "http://localhost:8000/api/admin/loginAdmin",
       formData
     );
 
@@ -62,14 +60,14 @@ const handleSubmit = async (e) => {
 
     // to store token in LocalStorage
     localStorage.setItem("token", token);
-    localStorage.setItem("userType", "patient");
+    localStorage.setItem("userType", "doctor");
 
     toast.success("Login successful!");
     console.log("Token:", token);
 
     setErrors({});
 
-    navigate("/patient/dashboard");
+    navigate("/admin/dashboard");
 
   } catch (error) {
     toast.error("Login failed. Check your credentials.");
@@ -82,9 +80,9 @@ const handleSubmit = async (e) => {
         <form 
           onSubmit={handleSubmit}
           className="bg-white shadow-md rounded-lg p-8 w-full max-w-md space-y-4 border-1 ">
-        <h2 className="text-2xl font-bold text-center text-sky-500 ">Patient Log In</h2>
+        <h2 className="text-2xl font-bold text-center text-sky-500 ">Admin Log In</h2>
         <div>
-          <FormInput
+         <FormInput
            label="Email"
            name="email"
            type="email"
@@ -94,16 +92,16 @@ const handleSubmit = async (e) => {
            error={errors.email}
           />
         </div>
-        
+
         <div>
          <FormInput
-          label="Password"
-          name="password"
-          type="password"
-          placeholder="Create your password"
-          value={formData.password}
-          onChange={handleChange}
-          error={errors.password}
+           label="Password"
+           name="password"
+           type="password"
+           placeholder="Create your password"
+           value={formData.password}
+           onChange={handleChange}
+           error={errors.password}
           />
         </div>
 

@@ -1,6 +1,7 @@
 import express from "express"
-import { getAllAdmins , createAdmin, updateAdmin, deleteAdmin, registerAdmin, loginAdmin, getAdmin } from "../controller/adminController.js"
+import { getAllAdmins , createAdmin, updateAdmin, deleteAdmin, registerAdmin, loginAdmin, getAdmin, getAdminStatistics } from "../controller/adminController.js"
 import { protect } from "../middleware/authMiddleware.js";
+import { protectAdmin } from "../middleware/authMiddleware.js";
 
 const adminRoute = express.Router();
 
@@ -20,6 +21,8 @@ adminRoute.get("/getAllAdmins", getAllAdmins);
 adminRoute.put("/updateAdmin/:id", updateAdmin);
 
 adminRoute.delete("/deleteAdmin/:id", deleteAdmin);
+
+adminRoute.get("/statistics", protectAdmin, getAdminStatistics);
 
 
 export default adminRoute;

@@ -11,7 +11,8 @@ const recordSchema = new mongoose.Schema({
     },
     patient_id: {
          type: mongoose.Schema.Types.ObjectId,
-         ref: patientModel
+         ref: patientModel,
+         required: true
     },
     fullName:{
         type: String,

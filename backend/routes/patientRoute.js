@@ -276,4 +276,7 @@ patientRoute.delete("/deletePatient/:id", deletePatient );
 patientRoute.get("/searchPatients", protect, searchPatients);
 
 
+
+
+
 export default patientRoute;

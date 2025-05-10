@@ -1,9 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate  } from 'react-router-dom';
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+import FormInput from "../components/FormInput";
+
 
 export default function DoctorRegister() {
   ;
@@ -74,7 +75,8 @@ export default function DoctorRegister() {
       localStorage.setItem("token", token);
       localStorage.setItem("userType", "doctor");
 
-      setMessage("Registration successful");
+      toast.success("Registration successful!");
+
       console.log("Server response:", response.data);
       console.log("Token:", token);
 
@@ -90,81 +92,78 @@ export default function DoctorRegister() {
       navigate("/dashboard");
 
     } catch (error) {
-      setMessage("Registration failed");
+      toast.error("Registration failed. Please try again.");
       console.error("Error during registration:", error);
     }
 
   }else {
-    setMessage("Please correct errors in the form.");
+    toast.warning("Please correct errors in the form.");
+
   }
   };
 
 
 
   return (
-    <div className="flex items-center justify-center min-h-screen px-4 w-00 h-96">
+    <div className="flex items-center justify-center min-h-screen px-4 w-00 h-96 mt-10">
       <form  
       onSubmit={handleSubmit}
       className="bg-white shadow-md rounded-lg p-8 w-full max-w-md space-y-4 border-1">
         <h2 className="text-2xl font-bold text-center text-sky-500 ">Doctor Sign Up</h2>
 
         <div>
-          <Label htmlFor="name">Full Name</Label>
-          <Input 
-            type="text"
+          <FormInput
+            label="Full Name"
             name="fullName"
-            id="name"
-            placeholder="Enter your full name" 
+            placeholder="Enter your full name"
             value={formData.fullName}
-            onChange={handleChange}/>
-            {errors.fullName && <span className="text-red-500 text-sm mt-1">{errors.fullName}</span>}
+            onChange={handleChange}
+            error={errors.fullName}
+          />
         </div>
 
         <div>
-          <Label htmlFor="email">Email</Label>
-          <Input 
+          <FormInput
+            label="Email"
             name="email"
-            id="email"
             type="email"
-            placeholder="Enter your email" 
+            placeholder="Enter your email"
             value={formData.email}
-            onChange={handleChange}/>
-            {errors.email && <span className="text-red-500 text-sm mt-1">{errors.email}</span>}
+            onChange={handleChange}
+            error={errors.email}
+          />
         </div>
 
         <div>
-          <Label htmlFor="password">Password</Label>
-          <Input
+          <FormInput
+            label="Password"
             name="password"
-            id="password"
-            type="password" 
-            placeholder="Create your password" 
+            type="password"
+            placeholder="Create your password"
             value={formData.password}
-            onChange={handleChange}/>
-            {errors.password && <span className="text-red-500 text-sm mt-1">{errors.password}</span>}
+            onChange={handleChange}
+            error={errors.password}
+          />
         </div>
 
         
 
         <div>
-          <Label htmlFor="email">Role</Label>
-          <Input 
+         <FormInput
+            label="Role"
             name="role"
-            id="role"
-            type="text"
-            placeholder="Doctor or patient" 
+            placeholder="Doctor or patient"
             value={formData.role}
-            onChange={handleChange}/>
-            {errors.role && <span className="text-red-500 text-sm mt-1">{errors.role}</span>}
+            onChange={handleChange}
+            error={errors.role}
+          />
         </div>
         
         <Button type="submit" className="w-full bg-sky-500 hover:bg-sky-700">
           Register
         </Button>
 
-        {message && (
-          <p className="text-center text-sm text-gray-600 mt-2">{message}</p>
-        )}
+        
 
         <p className="text-center text-sm text-gray-600 mt-3">
           Already have an account? <Link className="text-sky-500" to="/login">Login</Link>
